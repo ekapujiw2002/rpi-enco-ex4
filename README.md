@@ -1,2 +1,2 @@
-# rpi-enco-ex4
+# RPI MMEDIA EX4
 Multimedia system on Raspberry Pi
