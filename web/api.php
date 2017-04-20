@@ -19,7 +19,16 @@ $cmd = intval($_REQUEST['c']);
 // process cmd
 switch ($cmd) {
     case CMD_GET_SERVER_SETTING:
-        echo json_encode(array('network' => get_network_info(), 'ftp' => get_ftp_service(), 'device' => get_device_name_timezone(), 'dyndns' => get_dyn_dns_settings()), JSON_NUMERIC_CHECK);
+        echo json_encode(
+		array(
+		'network' => get_network_info(), 
+		'ftp' => get_ftp_service(), 
+		'device' => get_device_name_timezone(), 
+		'dyndns' => get_dyn_dns_settings(), 
+		'videostreaming' => get_video_stream_setting(),
+		'xkey' => get_xkey_cmd_setting()
+		), 
+		JSON_NUMERIC_CHECK);
         break;
 
     case CMD_GET_PLAYER_STATUS:
@@ -35,7 +44,7 @@ switch ($cmd) {
         if (empty($hostname))
             echo 1;
         else {
-            @exec("sudo hostnamectl set-hostname $h > /dev/null 2>&1 ; echo $?", $out);
+            @exec("sudo /usr/bin/hostnamectl set-hostname $h > /dev/null 2>&1 ; echo $?", $out);
             echo (empty($out[0]) ? 1 : intval($out[0]));
         }
         break;
@@ -45,7 +54,7 @@ switch ($cmd) {
         if (empty($tz))
             echo 1;
         else {
-            @exec("sudo timedatectl set-timezone \"$tz\" > /dev/null 2>&1 ; echo $?", $out);
+            @exec("sudo /usr/bin/timedatectl set-timezone \"$tz\" > /dev/null 2>&1 ; echo $?", $out);
             echo (empty($out[0]) ? 1 : intval($out[0]));
         }
         break;
@@ -55,6 +64,7 @@ switch ($cmd) {
         $dev_name = $_REQUEST['txt-device-name'];
         $tz = $_REQUEST['sel-timezone'];
         $web_password = $_REQUEST['txt-web-password'];
+		$limit_svc = ($_REQUEST['cb-limited-services']=="on") ? 1:0;
         $local_ip = $_REQUEST['txt-local-ip'];
         $dns = $_REQUEST['txt-dns'];
         $gateway = $_REQUEST['txt-gateway'];
@@ -70,6 +80,16 @@ switch ($cmd) {
         $dyndns_username = "$dev_name%23encoip";
         $dyndns_url = "$dev_name.encoip.com";
         $dyndns_password = $_REQUEST['txt-dyndns-password'];
+		// vide streaming
+		$vidstream_url = $_REQUEST['txt-video-stream-url'];
+		$vidstream_on = ($_REQUEST['cb-video-stream-on']=="on") ? 1:0;
+		// command button
+		$xkey_btn = array(
+		$_REQUEST['txt-xkey-btn1'],
+		$_REQUEST['txt-xkey-btn2'],
+		$_REQUEST['txt-xkey-btn3'],
+		$_REQUEST['txt-xkey-btn4']
+		);
 
         $resx = array(
             'err' => 0,
@@ -171,6 +191,33 @@ switch ($cmd) {
                     );
                 }
             }
+			//10. set limit service
+            if ($resx['err'] == 0) {
+                if ( set_limit_svc_setting($limit_svc) != 0) {
+                    $resx = array(
+                        'err' => 10,
+                        'msg' => 'Cannot update service limit'
+                    );
+                }
+            }
+			//11. set video setting
+            if ($resx['err'] == 0) {
+                if ( set_video_streaming_setting($vidstream_url, $vidstream_on) != 0) {
+                    $resx = array(
+                        'err' => 11,
+                        'msg' => 'Cannot update video streaming'
+                    );
+                }
+            }
+			//12. set xkey cmd button
+			if ($resx['err'] == 0) {
+                if ( set_xkey_cmd_setting($xkey_btn) != 0) {
+                    $resx = array(
+                        'err' => 12,
+                        'msg' => 'Cannot update command button list'
+                    );
+                }
+            }
         } else {
             $resx['err'] = 1;
             $resx['msg'] = 'Cannot set system to read-write mode';
@@ -190,7 +237,7 @@ switch ($cmd) {
         break;
 
     case CMD_REBOOT:
-        @exec("sudo reboot now");
+        @exec("sudo /usr/bin/reboot now");
         break;
 
     case 100:

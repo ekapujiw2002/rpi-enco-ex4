@@ -109,6 +109,8 @@ function get_server_info_action() {
     $('#frm-network')[0].reset();
     $('#frm-ftp')[0].reset();
     $('#frm-dyn-dns')[0].reset();
+	$('#frm-video-stream')[0].reset();
+	$('#frm-xkey')[0].reset();
 
     //disable btn
     $('#btn-reboot, #btn-save').removeClass('disabled').addClass('disabled');
@@ -137,6 +139,7 @@ function get_server_info_action() {
             $('#txt-device-name').val($obj.name);
             $('#sel-timezone').val($obj.timezone);
             $('#txt-web-password').val($obj.password);
+			$('#cb-limited-services').prop("checked", ($obj.limit_svc==0) ? false:true);
         }
 
         //network info
@@ -168,6 +171,22 @@ function get_server_info_action() {
             $('#txt-dyndns-username').val($obj.username);
             $('#txt-dyndns-password').val($obj.password);
             $('#txt-dyndns-url').val($obj.url);
+        }
+		//videostreaming info
+        if (typeof (datax.videostreaming) !== 'undefined') {
+//                                console.log(datax.device);
+            $obj = datax.videostreaming;
+            $('#txt-video-stream-url').val($obj.video_stream_url);
+            $('#cb-video-stream-on').prop("checked" , ($obj.video_stream_on==0) ? false:true);
+        }
+		//xkey cmd info
+        if (typeof (datax.xkey) !== 'undefined') {
+//                                console.log(datax.device);
+            $obj = datax.xkey;
+            $('#txt-xkey-btn1').val($obj[0]);
+            $('#txt-xkey-btn2').val($obj[1]);
+			$('#txt-xkey-btn3').val($obj[2]);
+			$('#txt-xkey-btn4').val($obj[3]);
         }
     }
     )
@@ -273,7 +292,9 @@ function save_config_handler() {
                 var $data_network = $('#frm-network').serialize();
                 var $data_ftp = $('#frm-ftp').serialize();
                 var $data_dyn_dns = $('#frm-dyn-dns').serialize();
-                var $data = 'c=5&' + $data_general + '&' + $data_network + '&' + $data_ftp + '&' + $data_dyn_dns;
+				var $data_video_streaming = $('#frm-video-stream').serialize();
+				var $data_xkey = $('#frm-xkey').serialize();
+                var $data = 'c=5&' + $data_general + '&' + $data_network + '&' + $data_ftp + '&' + $data_dyn_dns + '&' + $data_video_streaming + '&' + $data_xkey;
 
 //                console.log($data_general);
 //                console.log($data_network);
@@ -365,8 +386,10 @@ $(document).ready(
             //action config handler
             config_action_handler();
 
+			//handler to reboot system
             reboot_handler();
 
+			//handler to button save config
             save_config_handler();
         }
 );

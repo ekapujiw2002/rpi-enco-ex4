@@ -32,6 +32,9 @@ include_once './util_func.php';
             .control-label{
                 text-align: left!important;
             }
+			.panel-body  {
+				word-break:break-all
+			}
         </style>
     </head>
     <body>
@@ -51,13 +54,13 @@ include_once './util_func.php';
                         <div class="panel-heading text-center"><h3>NOW PLAYING</h3></div>
                         <div class="panel-body panel-font">
                             <div class="row">
-                                <label class="col-sm-2">Source</label><label class="col-sm-10" id="lbl-now-src">?</label>
+                                <label class="col-sm-3">Source</label><label class="col-sm-9" id="lbl-now-src">?</label>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2">Title</label><label class="col-sm-10" id="lbl-now-ttl">?</label>
+                                <label class="col-sm-3">Title</label><label class="col-sm-9" id="lbl-now-ttl">?</label>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2">Duration</label><label class="col-sm-10" id="lbl-now-dur">?</label>
+                                <label class="col-sm-3">Duration</label><label class="col-sm-9" id="lbl-now-dur">?</label>
                             </div>
                         </div>
                     </div>
@@ -67,13 +70,13 @@ include_once './util_func.php';
                         <div class="panel-heading text-center"><h3>UP NEXT</h3></div>
                         <div class="panel-body panel-font">
                             <div class="row">
-                                <label class="col-sm-2">Source</label><label class="col-sm-10" id="lbl-next-src">?</label>
+                                <label class="col-sm-3">Source</label><label class="col-sm-9" id="lbl-next-src">?</label>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2">Title</label><label class="col-sm-10" id="lbl-next-ttl">?</label>
+                                <label class="col-sm-3">Title</label><label class="col-sm-9" id="lbl-next-ttl">?</label>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2">Duration</label><label class="col-sm-10" id="lbl-next-dur">?</label>
+                                <label class="col-sm-3">Duration</label><label class="col-sm-9" id="lbl-next-dur">?</label>
                             </div>
                         </div>
                     </div>
@@ -111,7 +114,7 @@ include_once './util_func.php';
 
         <!-- configuration windows -->
         <div id="win-configuration" class="modal fade" data-backdrop="static">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -125,6 +128,8 @@ include_once './util_func.php';
                             <li><a href="#tab-network" data-toggle="tab"><span class="glyphicon glyphicon-random"></span> Network</a></li>
                             <li><a href="#tab-ftp" data-toggle="tab"><span class="glyphicon glyphicon-folder-open"></span> FTP</a></li>
                             <li><a href="#tab-dyn-dns" data-toggle="tab"><span class="glyphicon glyphicon-cloud"></span> Dyn. DNS</a></li>
+							<li><a href="#tab-video-stream" data-toggle="tab"><span class="glyphicon glyphicon-film"></span> Video Streaming</a></li>
+							<li><a href="#tab-xkey" data-toggle="tab"><span class="glyphicon glyphicon-tasks"></span> Command Keys</a></li>
                         </ul>
 
                         <!-- tab content -->
@@ -150,6 +155,13 @@ include_once './util_func.php';
                                         <label for="txt-web-password" class="control-label col-xs-2">Password</label>
                                         <div class="col-xs-10">
                                             <input type="password" class="form-control" id="txt-web-password" name="txt-web-password" placeholder="Password">
+                                        </div>
+                                    </div>
+									<div class="form-group">
+                                        <div class="col-xs-offset-2 col-xs-10">
+                                            <div class="checkbox">
+												<label><input type="checkbox" id="cb-limited-services" name="cb-limited-services">Limited services</label>
+											</div>
                                         </div>
                                     </div>
                                 </form>
@@ -245,6 +257,51 @@ include_once './util_func.php';
                                             <input type="text" class="form-control" id="txt-dyndns-url" name="txt-dyndns-url" placeholder="URL" readonly="readonly">
                                         </div>
                                     </div>
+                                </form>
+                            </div>
+							<div id="tab-video-stream" class="tab-pane">
+                                <form id="frm-video-stream" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="txt-video-stream-url" class="control-label col-xs-2">URL</label>
+                                        <div class="col-xs-10">
+                                            <input type="text" class="form-control" id="txt-video-stream-url" name="txt-video-stream-url" placeholder="Video streaming URL">
+                                        </div>
+                                    </div> 
+                                    <div class="form-group">
+                                        <div class="col-xs-offset-2 col-xs-10">
+                                            <div class="checkbox">
+												<label><input type="checkbox" id="cb-video-stream-on" name="cb-video-stream-on">Active</label>
+											</div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+							<div id="tab-xkey" class="tab-pane">
+                                <form id="frm-xkey" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="txt-xkey-btn1" class="control-label col-xs-2">Button 1</label>
+                                        <div class="col-xs-10">
+                                            <input type="text" class="form-control" id="txt-xkey-btn1" name="txt-xkey-btn1" placeholder="Command for button 1">
+                                        </div>
+                                    </div> 
+									<div class="form-group">
+                                        <label for="txt-xkey-btn2" class="control-label col-xs-2">Button 2</label>
+                                        <div class="col-xs-10">
+                                            <input type="text" class="form-control" id="txt-xkey-btn2" name="txt-xkey-btn2" placeholder="Command for button 2">
+                                        </div>
+                                    </div> 
+									<div class="form-group">
+                                        <label for="txt-xkey-btn3" class="control-label col-xs-2">Button 3</label>
+                                        <div class="col-xs-10">
+                                            <input type="text" class="form-control" id="txt-xkey-btn3" name="txt-xkey-btn3" placeholder="Command for button 3">
+                                        </div>
+                                    </div> 
+									<div class="form-group">
+                                        <label for="txt-xkey-btn4" class="control-label col-xs-2">Button 4</label>
+                                        <div class="col-xs-10">
+                                            <input type="text" class="form-control" id="txt-xkey-btn4" name="txt-xkey-btn4" placeholder="Command for button 4">
+                                        </div>
+                                    </div> 
                                 </form>
                             </div>
                         </div>
