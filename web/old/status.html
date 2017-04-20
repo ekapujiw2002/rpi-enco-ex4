@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ENCO Systems - enStreamer Status</title>
+
+        <style>
+            * { 
+                margin: 0; padding: 0; 
+            }
+
+            html { 
+                background: url('images/ENCO.png') no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
+            #back_button {
+                position:absolute;
+                transition: .5s ease;
+                top: 90%;
+                left: 10.5%;
+
+                width: 100px;
+                height: 44px;
+            }
+            #back_button:hover { 
+                -webkit-transform: scale(1.18);/*Grows in size like Angry Birds button*/
+                -moz-transform: scale(1.18);
+                -ms-transform: scale(1.18);
+                -o-transform: scale(1.18);
+            }      
+        </style> 
+        
+</head>
+<body>
+
+<center>
+    <font face="Arial" color="white" size="5">
+    <h1>
+        ENCO Systems - enStreamer Status
+        <hr width="80%">
+    </h1>
+</center>
+
+<font face="Arial" color="white" size="6">
+<br/>
+<br/>
+
+<table>
+    <tr>
+        <td colspan="3"><font color="YELLOW">GENERAL SETTINGS</font></td>
+    </tr>
+    <tr>
+        <td width="5%"></td>
+        <td>Temperature:</td>
+        <td>42.2&deg C</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Voltage:</td>
+        <td>1.20 V</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Min Speed:</td>
+        <td>700 MHz</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Max Speed:</td>
+        <td>900 MHz</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Current Speed:</td>
+        <td>900 MHz</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Governor:</td>
+        <td>performance</td>
+    </tr>
+</table>
+</font>
+
+<font face="Arial" size="8">
+<a href="index.html"><input type="button" value="Back" id="back_button"></a>
+</font>
+
+<br/>
+<br/>
+
+
+</body>
+</html>

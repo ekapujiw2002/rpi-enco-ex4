@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ENCO Systems - enStreamer Setup</title>
+
+        <style>
+            *
+            { 
+                margin: 0; padding: 0; 
+            }
+
+            html { 
+                background: url('images/ENCO.png') no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
+            #back_button {
+                position:absolute;
+                transition: .5s ease;
+                top: 90%;
+                left: 10.5%;
+
+                width: 100px;
+                height: 44px;
+            }
+            #back_button:hover { 
+                -webkit-transform: scale(1.18);/*Grows in size like Angry Birds button*/
+                -moz-transform: scale(1.18);
+                -ms-transform: scale(1.18);
+                -o-transform: scale(1.18);
+            }      
+            #save_button {
+                position:absolute;
+                transition: .5s ease;
+                top: 90%;
+                left: 30%;
+
+                width: 100px;
+                height: 44px;
+            }
+            #save_button:hover { 
+                -webkit-transform: scale(1.18);/*Grows in size like Angry Birds button*/
+                -moz-transform: scale(1.18);
+                -ms-transform: scale(1.18);
+                -o-transform: scale(1.18);
+            }      
+
+            input[type="text"] {
+                font-size:23px
+            }      
+            input[type="password"] {
+                font-size:23px
+            }
+        </style>    
+
+    </head>
+    <body>
+
+    <center>
+        <font face="Arial" color="white" size="5">
+        <h1>
+            ENCO Systems - enStreamer Setup
+            <hr width="80%">
+        </h1>
+    </center>
+
+    <font face="Arial" color="white" size="6">
+    <table>
+        <tr>
+            <td colspan="3"><font color="YELLOW">GENERAL SETTINGS</font></td>
+        </tr>
+        <tr>
+            <td width="5%"></td>
+            <td>Device Name:</td>
+            <td><input type="text" value="enstreamer-000-00001"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Time Zone:</td>
+            <td><input type="text" value="America/Detroit (-5)"></td>
+        </tr>
+
+        <tr height="7px"></tr>
+
+        <tr>
+            <td colspan="3"><font color="YELLOW">NETWORK SETTINGS</font></td>
+        </tr>
+        <tr>
+            <td width="5%"></td>
+            <td>Public IP:</td>
+            <td><input type="text" value="65.96.231.190"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Local IP:</td>
+            <td><input type="text" value="10.4.4.14/24"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Gateway:</td>
+            <td><input type="text" value="10.4.4.1"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>DNS:</td>
+            <td><input type="text" value="10.4.4.1"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Web Port:</td>
+            <td><input type="text" value="46000"></td>
+        </tr>
+
+        <tr height="7px"></tr>
+
+        <tr>
+            <td colspan="3"><font color="YELLOW">WEBDAV HOST SETTINGS</font></td>
+        </tr>
+        <tr>
+            <td width="5%"></td>
+            <td>Server:</td>
+            <td><input type="text" value="http://novacek.selfip.com"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Port:</td>
+            <td><input type="text" value="60000"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>User Name:</td>
+            <td><input type="text" value="nova"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Password:</td>
+            <td><input type="password" value="****"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Scan Interval:</td>
+            <td><input type="text" value="5"></td>
+        </tr>
+    </table>
+    </font>
+
+    <font face="Arial" size="8">
+    <a href="settings.html"><input type="button" value="Back" id="back_button"></a>
+    <a href="settings.html"><input type="button" value="Save Changes" id="save_button"></a>
+    </font>
+
+    <br/>
+    <br/>
+
+
+</body>
+</html>

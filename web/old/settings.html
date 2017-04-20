@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ENCO Systems - enStreamer Setup</title>
+        <SCRIPT>
+            function passWord() {
+                var testV = 1;
+                var pass1 = prompt('Please Enter Your Password', ' ');
+
+                while (testV < 3) {
+                    if (!pass1)  // user didn't enter anything
+                        window.open('settings.html', '_self', false);
+                    //history.go(-1);
+
+                    if (pass1.toLowerCase() == "qwerty") {
+                        //alert('You Got it Right!');
+                        window.open('configure.html', '_self', false);
+                        break;
+                    }
+
+                    testV += 1;
+                    var pass1 =
+                            prompt('Access Denied - Password Incorrect, Please Try Again.', ' ');
+                }
+
+                if (pass1.toLowerCase() != "password" & testV == 3)  // too many retries
+                    window.open('settings.html', '_self', false);
+                //history.go(-1);
+
+                return " ";
+            }
+        </SCRIPT>    
+
+        <style>
+            * { 
+                margin: 0; padding: 0; 
+            }
+
+            html { 
+                background: url('images/ENCO.png') no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
+            #back_button {
+                position:absolute;
+                transition: .5s ease;
+                top: 90%;
+                left: 10.5%;
+
+                width: 100px;
+                height: 44px;
+            }
+            #back_button:hover { 
+                -webkit-transform: scale(1.18);/*Grows in size like Angry Birds button*/
+                -moz-transform: scale(1.18);
+                -ms-transform: scale(1.18);
+                -o-transform: scale(1.18);
+            }      
+            #configure_button {
+                position:absolute;
+                transition: .5s ease;
+                top: 90%;
+                left: 30%;
+
+                width: 100px;
+                height: 44px;
+            }
+            #configure_button:hover { 
+                -webkit-transform: scale(1.18);/*Grows in size like Angry Birds button*/
+                -moz-transform: scale(1.18);
+                -ms-transform: scale(1.18);
+                -o-transform: scale(1.18);
+            }      
+        </style>    
+    </style>    
+
+</head>
+<body>
+
+<center>
+    <font face="Arial" color="white" size="5">
+    <h1>
+        ENCO Systems - enStreamer Setup
+        <hr width="80%">
+    </h1>
+</center>
+
+<font face="Arial" color="white" size="6">
+<table>
+    <tr>
+        <td colspan="3"><font color="YELLOW">GENERAL SETTINGS</font></td>
+    </tr>
+    <tr>
+        <td width="5%"></td>
+        <td>Device Name:</td>
+        <td>enstreamer-000-00001</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Time Zone:</td>
+        <td>America/Detroit (-5)</td>
+    </tr>
+
+    <tr height="7px"></tr>
+
+    <tr>
+        <td colspan="3"><font color="YELLOW">NETWORK SETTINGS</font></td>
+    </tr>
+    <tr>
+        <td width="5%"></td>
+        <td>Public IP:</td>
+        <td>65.96.231.190</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Local IP:</td>
+        <td>10.4.4.14/24</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Gateway:</td>
+        <td>10.4.4.1</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>DNS:</td>
+        <td>10.4.4.1</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Web Port:</td>
+        <td>46000</td>
+    </tr>
+
+    <tr height="7px"></tr>
+
+    <tr>
+        <td colspan="3"><font color="YELLOW">FTP HOST SETTINGS</font></td>
+    </tr>
+    <tr>
+        <td width="5%"></td>
+        <td>Server:</td>
+        <td>ftp://ftp2.enco.com</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Port:</td>
+        <td>21</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>User Name:</td>
+        <td>nova</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Password:</td>
+        <td>****</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>Scan Interval:</td>
+        <td>5</td>
+    </tr>
+</table>
+</font>
+
+<font face="Arial" size="8">
+<a href="index.html"><input type="button" value="Back" id="back_button"></a>
+<input type="button" value="Configure" id="configure_button" onClick="passWord()">
+</font>
+
+<br/>
+<br/>
+
+
+</body>
+</html>
